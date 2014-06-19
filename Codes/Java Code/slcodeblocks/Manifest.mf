@@ -1,0 +1,2 @@
+Main-Class: slcodeblocks.WorkspaceController
+Class-Path: codeblocks.jar

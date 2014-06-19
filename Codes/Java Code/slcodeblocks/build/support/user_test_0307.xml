@@ -1,0 +1,2155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE StarLogo-TNG SYSTEM "lang_def.dtd">
+
+<!-- 
+
+
+This describes every BlockGenus, BlockDrawer, BlockFamilies in Starlogo-TNG.
+
+Note: For BlockGenus, if genus A relies on another genus B, that genus B must be 
+specified in the xml file before genus A is specified.  We impose this requirement so 
+that sanity checks can be made regarding the validity of a default argument when the
+BlockGenuses are first loaded.
+
+-->
+
+<BlockLangDef> 
+
+	<BlockConnectorShapes>
+		<BlockConnectorShape shape-type="number" shape-number="1"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="number-list" shape-number="2"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="number-inv" shape-number="3"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="boolean" shape-number="4"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="boolean-list" shape-number="5"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="boolean-inv" shape-number="6"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="string" shape-number="7"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="string-list" shape-number="8"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="string-inv" shape-number="9"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="poly" shape-number="10"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="poly-list" shape-number="11"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="poly-inv" shape-number="12"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="proc-param" shape-number="13"></BlockConnectorShape>
+		<BlockConnectorShape shape-type="cmd" shape-number="14"></BlockConnectorShape>
+	</BlockConnectorShapes>
+	
+	<BlockGenuses>
+		<!-- Stub Genuses 
+			Do not remove unless you would like to remove the stub feature all together
+		-->
+		
+		<BlockGenus name="getter" kind="data" initlabel="" color="0 0 0" >
+			<description>
+				<text>
+					Reports the value of the variable.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="poly" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>	
+		</BlockGenus>
+		
+		<BlockGenus name="setter" kind="command" initlabel="" color="0 0 0" label-prefix="set ">
+			<description>
+				<text>
+					Sets the value of the variable.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="poly" position-type="single"></BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		<BlockGenus name="caller" kind="command" initlabel="" color="0 0 0">
+			<description>
+				<text>
+					Calls the procedure of the specified name.
+				</text>
+			</description>		
+		</BlockGenus>
+
+		<BlockGenus name="inc" kind="command" initlabel="" color="0 0 0" label-prefix="inc ">
+			<description>
+				<text>
+					Increments the value of the variable number.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="number" position-type="single"></BlockConnector>
+			</BlockConnectors>		
+		</BlockGenus>
+		
+		<BlockGenus name="agent" kind="function" initlabel="" color="0 0 0" label-suffix=" of" is-starter="yes" is-terminator="yes">
+			<description>
+				<text>
+					Gets the value of the variable of the agent who.
+				</text>
+			</description>
+			<BlockConnectors>
+			    <BlockConnector connector-kind="plug" connector-type="poly" position-type="single"></BlockConnector>
+				<BlockConnector label="who" connector-kind="socket" connector-type="number" position-type="single"></BlockConnector>
+			</BlockConnectors>	
+			<LangSpecProperties>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>			
+		</BlockGenus>
+		
+		<!-- End of Stub Genuses -->
+	
+		<BlockGenus name="number" kind="data" initlabel="1" editable-label="yes" is-label-value="yes" color="255 0 255">
+			<description>
+				<text>
+					Reports the number shown.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="number" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="eval-num"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="string" kind="data" initlabel="abc" editable-label="yes" is-label-value="yes" color="255 0 255">
+			<description>
+				<text>
+					Reports the string shown.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="string" position-type="mirror"></BlockConnector>		
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="eval-num"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="true" kind="data" initlabel="true" color="255 0 255">
+			<description>
+				<text>
+					Reports the boolean true.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="true"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="false" kind="data" initlabel="false" color="255 0 255">
+			<description>
+				<text>
+					Reports the boolean false.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="false"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+	
+		<BlockGenus name="fd" kind="command" initlabel="forward" color="255 0 0">
+			<description>
+				<text>
+					Agents moves <arg n="1"/> steps forward.
+				</text>
+				<arg-description n="1" name="steps">
+					Number of steps to move.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="steps" connector-kind="socket" connector-type="number">
+					<DefaultArg genus-name="number" label="1"></DefaultArg>
+				</BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="fd"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+	    <BlockGenus name="bk" kind="command" initlabel="back" color="255 0 0">
+			<description>
+				<text>
+					Agents moves <arg n="1"/> steps backward.
+				</text>
+				<arg-description n="1" name="steps">
+					Number of steps to move.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="steps" connector-kind="socket" connector-type="number">
+					<DefaultArg genus-name="number" label="1"></DefaultArg>
+				</BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="bk"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="lt" kind="command" initlabel="left" color="255 0 0">
+			<description>
+				<text>
+					Makes agents turn <arg n="1"/> degrees to the left.
+				</text>
+				<arg-description n="1" name="degs">
+					The number of degrees to turn.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="degs" connector-kind="socket" connector-type="number">
+					<DefaultArg genus-name="number" label="90"></DefaultArg>
+				</BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="lt"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="rt" kind="command" initlabel="right" color="255 0 0">
+			<description>
+				<text>
+					Makes agents turn <arg n="1"/> degrees to the right.
+				</text>
+				<arg-description n="1" name="degs">
+					The number of degrees to turn.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="degs" connector-kind="socket" connector-type="number">
+					<DefaultArg genus-name="number" label="90"></DefaultArg>
+				</BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="rt"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		
+		
+		<BlockGenus name="if" kind="command" initlabel="if" color="255 69 0">
+			<description>
+				<text>
+					If <arg n="1"/> is true, the agent will run the blocks attached to <arg n="2"/>
+				</text>
+				<arg-description n="1" name="test">
+					The condition being tested.
+				</arg-description>
+				
+				<arg-description n="2" name="then">
+					The set of instructions that is done when the condition is true.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="test" connector-kind="socket" connector-type="boolean"></BlockConnector>
+				<BlockConnector label="then" connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="if"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="ifelse" kind="command" initlabel="ifelse" color="255 69 0">
+			<description>
+				<text>
+					Does the first set of commands if the condition specified is true, otherwise it will do the second set of commands.
+				</text>
+				<arg-description n="1" name="test">
+					The condition being tested.
+				</arg-description>
+				
+				<arg-description n="2" name="then">
+					The set of instructions that is done when the condition is true.
+				</arg-description>
+				
+				<arg-description n="3" name="else">
+					The set of instructions that is done when the condition is false.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="test" connector-kind="socket" connector-type="boolean"></BlockConnector>
+				<BlockConnector label="then" connector-kind="socket" connector-type="cmd"></BlockConnector>
+				<BlockConnector label="else" connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="ifelse"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="repeat" kind="command" initlabel="repeat" color="255 69 0">
+			<description>
+				<text>
+					Repeats some commands <arg n="1"/> times.
+				</text>
+				<arg-description n="1" name="times">
+					The number of times to repeat the command.
+				</arg-description>
+				
+				<arg-description n="2" name="do">
+					The commands to do.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="times" connector-kind="socket" connector-type="number"></BlockConnector>
+				<BlockConnector label="do" connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="repeat"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+			
+			
+		<BlockGenus name="ifelse" kind="command" initlabel="ifelse" color="255 69 0">
+			<description>
+				<text>
+					Does the first set of commands if the condition specified is true, otherwise it will do the second set of commands.
+				</text>
+				
+				<arg-description n="1" name="test">
+					The condition being tested.
+				</arg-description>
+				
+				<arg-description n="2" name="then">
+					The set of instructions that is done when the condition is true.
+				</arg-description>
+				
+				<arg-description n="3" name="else">
+					The set of instructions that is done when the condition is false.
+				</arg-description>
+				
+			</description>
+			
+			<BlockConnectors>
+				<BlockConnector label="test" connector-kind="socket" connector-type="boolean"></BlockConnector>
+				<BlockConnector label="then" connector-kind="socket" connector-type="cmd"></BlockConnector>
+				<BlockConnector label="else" connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="ifelse"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="collidee" kind="data" initlabel="collidee" color="128 128 128">
+			<description>
+				<text>
+					The who number of the other agent in a collision.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="number" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="eval-local"></LangSpecProperty>
+				<LangSpecProperty key="is-special-variable" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+			</LangSpecProperties>	
+		</BlockGenus>
+
+		
+		<BlockGenus name="switch" kind="command" initlabel="switch" color="255 69 0">
+			<description>
+				<text>
+					Performs one of a set of actions based on a value.
+				</text>
+				
+				<arg-description n="1" name="value">
+					The value to compare against.
+				</arg-description>
+				
+				<arg-description n="2" name="case">
+					The first possibility for the value.
+				</arg-description>
+				
+				<arg-description n="3" name="do">
+					The set of instructions that is done in the first case.
+				</arg-description>
+				
+				<arg-description n="4" name="case">
+					The second possibility for the value.
+				</arg-description>
+				
+				<arg-description n="5" name="do">
+					The set of instructions that is done in the second case.
+				</arg-description>
+				
+				<arg-description n="6" name="case">
+					The third possibility for the value.
+				</arg-description>
+				
+				<arg-description n="7" name="do">
+					The set of instructions that is done in the third case.
+				</arg-description>
+				
+				<arg-description n="8" name="default">
+					The set of instructions that is done in the default case.
+				</arg-description>
+				
+			</description>
+			
+			<BlockConnectors>
+				<BlockConnector label="value" connector-kind="socket" connector-type="poly"></BlockConnector>
+				<BlockConnector label="case" connector-kind="socket" connector-type="poly"></BlockConnector>
+				<BlockConnector label="do" connector-kind="socket" connector-type="cmd"></BlockConnector>
+				<BlockConnector label="case" connector-kind="socket" connector-type="poly"></BlockConnector>
+				<BlockConnector label="do" connector-kind="socket" connector-type="cmd"></BlockConnector>
+				<BlockConnector label="case" connector-kind="socket" connector-type="poly"></BlockConnector>
+				<BlockConnector label="do" connector-kind="socket" connector-type="cmd"></BlockConnector>
+				<BlockConnector label="default" connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="switch"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="count-everyone-with" kind="function" initlabel="count everyone with" color="255 0 255">
+			<description>
+				<text>
+					Counts all agents that satisfy a certain condition.
+				</text>
+				<arg-description n="1" name="condition" doc-name="condition">
+					The condition an agent must satisfy to be counted
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="number"></BlockConnector>
+				<BlockConnector connector-kind="socket" connector-type="boolean"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="count-everyone-with"></LangSpecProperty>
+				<LangSpecProperty key="inline-arg" value="0"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="smell-list-with" kind="function" initlabel="smell" color="255 0 255">
+			<description>
+				<text>
+					Smells all nearby agents that satisfy a certain condition.
+				</text>
+				<arg-description n="1" name="distance" doc-name="distance">
+					The distance within which an agent must be to be smelled.
+				</arg-description>
+				<arg-description n="2" name="condition" doc-name="condition">
+					The condition an agent must satisfy to be smelled.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="number-list"></BlockConnector>
+				<BlockConnector label="distance" connector-kind="socket" connector-type="number"></BlockConnector>
+				<BlockConnector label="with" connector-kind="socket" connector-type="boolean"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="smell-list-with"></LangSpecProperty>
+				<LangSpecProperty key="inline-arg" value="1"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+			
+		<BlockGenus name="say" kind="command" initlabel="say" color="138 43 226">
+			<description>
+				<text>
+					Causes this agent to "say" the supplied string by popping up a speech bubble in SpaceLand.
+				</text>
+				<arg-description n="1" name="string" doc-name="string">
+					The string to say
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="poly"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="say"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="list" kind="function" initlabel="list" color="0 0 225">
+			<description>
+				<text>
+					Creates a list from two items.
+				</text>
+				<arg-description n="1" name="item" doc-name="first item">
+					The first item
+				</arg-description>
+				<arg-description n="2" name="item" doc-name="second item">
+					The second item
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="poly-list"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="poly"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="poly"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="list"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="add-to-list" kind="function" initlabel="add to list" color="0 0 225">
+			<description>
+				<text>
+					Adds an item to a list.
+				</text>
+				<arg-description n="1" name="list" doc-name="list">
+					The list
+				</arg-description>
+				<arg-description n="2" name="number" doc-name="number">
+					The item to add to the list
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="poly-list"></BlockConnector>
+				<BlockConnector label="list" connector-kind="socket" connector-type="poly-list"></BlockConnector>
+				<BlockConnector label="item" connector-kind="socket" connector-type="poly"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="sentence"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="length" kind="function" initlabel="length" color="0 0 225">
+			<description>
+				<text>
+					Retrieves the length of a list.
+				</text>
+				<arg-description n="1" name="list" doc-name="list">
+					The list
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="number"></BlockConnector>
+				<BlockConnector label="list" connector-kind="socket" connector-type="poly-list"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="length"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="first" kind="function" initlabel="first" color="0 0 225">
+			<description>
+				<text>
+					Retrieves the first item in a list.
+				</text>
+				<arg-description n="1" name="list" doc-name="list">
+					The list
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="poly"></BlockConnector>
+				<BlockConnector label="list" connector-kind="socket" connector-type="poly-list"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="first"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="get-list-item" kind="function" initlabel="get list item" color="0 0 225">
+			<description>
+				<text>
+					Retrieves an item from a list.
+				</text>
+				<arg-description n="1" name="list" doc-name="list">
+					The list
+				</arg-description>
+				<arg-description n="2" name="index" doc-name="index">
+					The index of the item to retrieve
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="poly"></BlockConnector>
+				<BlockConnector label="list" connector-kind="socket" connector-type="poly-list"></BlockConnector>
+				<BlockConnector label="index" connector-kind="socket" connector-type="number"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="item"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="agent-var-boolean" kind="variable" initlabel="agent boolean" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="65 105 225">
+			<description>
+				<text>
+					Reports the value of a boolean (<em>true</em> or <em>false</em>) agent variable. <note>Every agent has a different value for a given agent variable.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="boolean" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tsett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="agent">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett-of"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="boolean"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="agent-var-boolean-list" kind="variable" initlabel="agent boolean list" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="65 105 225">
+			<description>
+				<text>
+					Reports the value of a boolean list agent variable. <note>Every agent has a different value for a given agent variable.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="boolean-list" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tsett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="agent">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett-of"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="boolean-list"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+
+		<BlockGenus name="agent-var-number" kind="variable" initlabel="agent number" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="65 105 225">
+			<description>
+				<text>
+					Reports the value of a number agent variable. <note>Every agent has a different value for a given agent variable.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="number" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tsett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="agent">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett-of"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="number"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="agent-var-number-list" kind="variable" initlabel="agent number list" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="65 105 225">
+			<description>
+				<text>
+					Reports the value of a number list agent variable. <note>Every agent has a different value for a given agent variable.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="number-list" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tsett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="agent">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett-of"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="number-list"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="agent-var-string" kind="variable" initlabel="agent string" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="65 105 225">
+			<description>
+				<text>
+					Reports the value of a string agent variable. <note>Every agent has a different value for a given agent variable.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="string" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tsett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="agent">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett-of"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="string"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="agent-var-string-list" kind="variable" initlabel="agent string list" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="65 105 225">
+			<description>
+				<text>
+					Reports the value of a string list agent variable. <note>Every agent has a different value for a given agent variable.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="string-list" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tsett"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="agent">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="tgett-of"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="agent"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="string-list"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+
+		<BlockGenus name="global-var-boolean" kind="variable" initlabel="global boolean" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="186 85 211">
+			<description>
+				<text>
+					Reports the value of a boolean (<em>true</em> or <em>false</em>) global variable. 
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="boolean"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-global"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setglobal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+				<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+				<LangSpecProperty key="type" value="boolean"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="global-var-boolean-list" kind="variable" initlabel="global boolean list" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="186 85 211">
+			<description>
+				<text>
+					Reports the value of a boolean list global variable.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="boolean-list" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-global"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setglobal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="boolean-list"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+
+		<BlockGenus name="global-var-number" kind="variable" initlabel="global number" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="186 85 211">
+			<description>
+				<text>
+					Reports the value of a number global variable. 
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="number-inv"></BlockConnector>
+				<BlockConnector connector-kind="socket" connector-type="number"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-global"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setglobal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+				<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+				<LangSpecProperty key="type" value="number"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="global-var-number-list" kind="variable" initlabel="global number list" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="186 85 211">
+			<description>
+				<text>
+					Reports the value of a number list global variable.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="number-list" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-global"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setglobal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="number-list"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+	
+		<BlockGenus name="global-var-string" kind="variable" initlabel="global string" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="186 85 211">
+			<description>
+				<text>
+					Reports the value of a String global variable. 
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="string"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-global"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setglobal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>tta
+			<LangSpecProperties>
+				<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+				<LangSpecProperty key="type" value="string"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="global-var-string-list" kind="variable" initlabel="global string list" editable-label="yes" label-unique="yes" page-label-enabled="yes" color="186 85 211">
+			<description>
+				<text>
+					Reports the value of a string list global variable.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="string-list" ></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-global"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setglobal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+			 	<LangSpecProperty key="scope" value="global"></LangSpecProperty>
+			 	<LangSpecProperty key="type" value="string-list"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="sum" kind="function" initlabel="+" color="0 0 225">
+			<description>
+				<text>
+					Reports the sum of two numbers (<arg n="1"/> + <arg n="2"/>).
+				</text>
+				<arg-description n="1" doc-name="left number">
+				</arg-description>
+				<arg-description n="2" doc-name="right number">
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="number" position-type="mirror"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="number" position-type="bottom"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="number" position-type="bottom"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="sum"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="difference" kind="function" initlabel="-" color="0 0 225">
+			<description>
+				<text>
+					Reports the difference of two numbers (<arg n="1"/> + <arg n="2"/>).
+				</text>
+				<arg-description n="1" doc-name="left number">
+				</arg-description>
+				<arg-description n="2" doc-name="right number">
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="number" position-type="mirror"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="number" position-type="bottom"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="number" position-type="bottom"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="difference"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="equals" kind="function" initlabel="=" color="0 0 225">
+			<description>
+				<text>
+					Determines if two quantities are equal (<arg n="1"/> = <arg n="2"/>).
+				</text>
+				<arg-description n="1" doc-name="left value">
+				</arg-description>
+				<arg-description n="2" doc-name="right value">
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="poly" position-type="bottom"></BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="poly" position-type="bottom"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="equals"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<!-- Controls -->
+		<BlockGenus name="keyboard-a" kind="data" initlabel="keyboard a?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "a" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-a"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-b" kind="data" initlabel="keyboard b?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "b" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-b"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-c" kind="data" initlabel="keyboard c?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "c" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-c"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-d" kind="data" initlabel="keyboard d?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "d" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-d"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-e" kind="data" initlabel="keyboard e?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "e" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-e"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-f" kind="data" initlabel="keyboard f?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "f" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-f"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-g" kind="data" initlabel="keyboard g?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "g" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-g"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-h" kind="data" initlabel="keyboard h?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "h" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-h"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-i" kind="data" initlabel="keyboard i?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "i" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-i"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-j" kind="data" initlabel="keyboard j?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "j" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-j"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-j" kind="data" initlabel="keyboard j?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "j" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-j"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-k" kind="data" initlabel="keyboard k?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "k" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-k"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-l" kind="data" initlabel="keyboard l?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "l" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-l"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-m" kind="data" initlabel="keyboard m?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "m" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-m"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-n" kind="data" initlabel="keyboard n?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "n" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-n"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-o" kind="data" initlabel="keyboard o?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "o" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-o"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-p" kind="data" initlabel="keyboard p?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "p" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-p"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-q" kind="data" initlabel="keyboard q?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "q" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-q"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-r" kind="data" initlabel="keyboard r?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "r" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-r"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-s" kind="data" initlabel="keyboard s?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "s" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-s"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-t" kind="data" initlabel="keyboard t?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "t" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-t"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-u" kind="data" initlabel="keyboard u?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "u" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-u"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-v" kind="data" initlabel="keyboard v?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "v" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-v"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-w" kind="data" initlabel="keyboard w?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "w" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-w"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-x" kind="data" initlabel="keyboard x?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "x" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-x"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-y" kind="data" initlabel="keyboard y?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "y" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-y"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-z" kind="data" initlabel="keyboard z?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "z" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-z"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-1" kind="data" initlabel="keyboard 1?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "1" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-1"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-2" kind="data" initlabel="keyboard 2?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "2" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-2"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-3" kind="data" initlabel="keyboard 3?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "3" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-3"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-4" kind="data" initlabel="keyboard 4?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "4" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-4"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-5" kind="data" initlabel="keyboard 5?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "5" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-5"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-6" kind="data" initlabel="keyboard 6?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "6" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-6"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-7" kind="data" initlabel="keyboard 7?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "7" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-7"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-8" kind="data" initlabel="keyboard 8?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "8" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-8"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-9" kind="data" initlabel="keyboard 9?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "9" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-9"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-0" kind="data" initlabel="keyboard 0?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the "0" key is being pressed. <note>Letter keys have a drop down menu that allow you to select other letter keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-0"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-up" kind="data" initlabel="keyboard up arrow?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the up arrow key is being pressed. <note>Arrow keys have a drop down menu that allow you to select other arrow keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-up"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-down" kind="data" initlabel="keyboard down arrow?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the down arrow key is being pressed. <note>Arrow keys have a drop down menu that allow you to select other arrow keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-down"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-left" kind="data" initlabel="keyboard left arrow?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the left arrow key is being pressed. <note>Arrow keys have a drop down menu that allow you to select other arrow keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-left"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-right" kind="data" initlabel="keyboard right arrow?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the right arrow key is being pressed. <note>Arrow keys have a drop down menu that allow you to select other arrow keys.</note>
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-right"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="keyboard-space" kind="data" initlabel="keyboard space bar?" color="255 255 0">
+			<description>
+				<text>
+					Reports whether the space bar is being pressed. 
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean" position-type="mirror"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="keyboard-space"></LangSpecProperty>
+				<LangSpecProperty key="is-monitorable" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<!-- Procedure and parameters -->
+		
+		<BlockGenus name="procedure" kind="procedure" initlabel="Procedure" editable-label="yes" label-unique="yes" page-label-enabled="yes" is-starter="yes" color="0 128 0">
+			<description>
+				<text>
+					Defines a section of blocks as a procedure that can be called from other sections of blocks.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="poly" is-expandable="yes"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="caller">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-procedure"></LangSpecProperty>
+						<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+						<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+					</LangSpecProperties>
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="eval-procedure"></LangSpecProperty>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="is-breed-set-by-canvas" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="proc-param-number" kind="param" initlabel="number param" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="0 128 0">
+			<description>
+				<text>
+					Adds a number parameter to a procedure.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="number"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-local"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setlocal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+				<LangSpecProperty key="type" value="number"></LangSpecProperty>
+			</LangSpecProperties>	
+		</BlockGenus>
+		
+		<BlockGenus name="proc-param-boolean" kind="param" initlabel="boolean param" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="0 128 0">
+			<description>
+				<text>
+					Adds a boolean parameter to a procedure.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="boolean"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-local"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setlocal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+				<LangSpecProperty key="type" value="boolean"></LangSpecProperty>
+			</LangSpecProperties>	
+		</BlockGenus>
+		
+		<BlockGenus name="proc-param-string" kind="param" initlabel="string param" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="0 128 0">
+			<description>
+				<text>
+					Adds a string parameter to a procedure.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="string"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-local"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setlocal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+				<LangSpecProperty key="type" value="string"></LangSpecProperty>
+			</LangSpecProperties>	
+		</BlockGenus>
+		
+		<BlockGenus name="proc-param-list" kind="param" initlabel="list param" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="0 128 0">
+			<description>
+				<text>
+					Adds a list parameter to a procedure.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="poly-list"></BlockConnector>
+			</BlockConnectors>
+			<Stubs>
+				<Stub stub-genus="getter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-local"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+				<Stub stub-genus="setter">
+					<LangSpecProperties>
+						<LangSpecProperty key="vm-cmd-name" value="eval-setlocal"></LangSpecProperty>
+						<LangSpecProperty key="scope" value="local"></LangSpecProperty>
+					</LangSpecProperties>	
+				</Stub>
+			</Stubs>
+			<LangSpecProperties>
+				<LangSpecProperty key="type" value="list"></LangSpecProperty>
+			</LangSpecProperties>	
+		</BlockGenus>
+		
+		<!-- SETUP AND RUNTIME BLOCKS -->
+		
+		<BlockGenus name="forever" kind="command" initlabel="Forever" editable-label="yes" label-unique="yes" page-label-enabled="yes" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					When switched on, agents do some commands over and over. <note>There are different commands for each breed.</note>
+				</text>
+				<arg-description n="1" name="agents" doc-name="breed">
+					The breed of the agents performing the commands attached here.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="" connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<Images>
+				<Image block-location="southwest" is-editable="yes">
+					<FileLocation>/support/forever_switch_on.gif</FileLocation>
+				</Image>
+			</Images>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-forever" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="has-runtime-equiv" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="runtime-forever" kind="command" initlabel="Forever" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					When switched on, agents do some commands over and over. <note>There are different commands for each breed.</note>
+				</text>
+			</description>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-forever" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="has-runtime-equiv" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="setup" kind="command" initlabel="Setup" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					This block serves as a wrapper around blocks that set up a model.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-setup" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="has-runtime-equiv" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="runtime-setup" kind="command" initlabel="Setup" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					This block serves as a wrapper around blocks that set up a model.
+				</text>
+			</description>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-runtime" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="monitor" kind="command" initlabel="Monitor" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					A block used to define a monitor.  Mointors appear in the runtime space where they dynamically report a value.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="poly"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-monitor" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="has-runtime-equiv" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="runtime-monitor" kind="command" initlabel="Monitor" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					A block used to define a monitor.  Mointors appear in the runtime space where they dynamically report a value.
+				</text>
+			</description>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-runtime" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="slider" kind="command" initlabel="Slider" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					A block used to define a monitor.  Mointors appear in the runtime space where they dynamically report a value.
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="number-inv"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-slider" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="has-runtime-equiv" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="line-graph" kind="command" initlabel="Line Graph" editable-label="yes" label-unique="yes" is-starter="yes" is-terminator="yes" color="139 0 0">
+			<description>
+				<text>
+					Defines a line graph that appears in the runtime space.  Each input to its sockets describes a series in the graph.  Values are graphed against time.	
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="number" is-expandable="yes"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-graph" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="has-runtime-equiv" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="clear-all" kind="command" initlabel="Clear All" color="139 0 0">
+			<description>
+				<text>
+					Resets the terrain to flat and green, and kills all of the agents in SpaceLand.
+				</text>
+			</description>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="ca"></LangSpecProperty>
+				<LangSpecProperty key="is-setup-block" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="clear-everyone" kind="command" initlabel="Clear Everyone" color="139 0 0">
+			<description>
+				<text>
+					Kills all of the agents in SpaceLand.
+				</text>
+			</description>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="ct"></LangSpecProperty>
+				<LangSpecProperty key="is-setup-block" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="clear-patches" kind="command" initlabel="Clear Patches" color="139 0 0">
+			<description>
+				<text>
+					Kills all of the patches in SpaceLand.
+				</text>
+			</description>
+			<LangSpecProperties>
+				<LangSpecProperty key="vm-cmd-name" value="cp"></LangSpecProperty>
+				<LangSpecProperty key="is-setup-block" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<!-- BREED SPECIFIC BLOCKS -->
+		
+		<BlockGenus name="create-agents" kind="command" initlabel="" label-prefix="Create " page-label-enabled="yes" color="139 0 0">
+			<description>
+				<text>
+				Creates <arg n="1"/> number of agents of the given breed.
+				</text>
+				<arg-description n="1" name="num">
+					The number of agents to create.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="num" connector-kind="socket" connector-type="number">
+					<DefaultArg genus-name="number" label="10"></DefaultArg>
+				</BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="vm-cmd-name" value="crt-breed"></LangSpecProperty>
+				<LangSpecProperty key="is-setup" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="include-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="include-breed-shape" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="create-and-do" kind="command" initlabel="" label-prefix="Create " page-label-enabled="yes" color="139 0 0">
+			<description>
+				<text>
+				Creates <arg n="1"/> number of agents of the given breed and has each do the specified commands.
+				</text>
+				<arg-description n="1" name="num">
+					The number of agents to create.
+				</arg-description>
+				<arg-description n="2" name="cmd">
+					The commands for each agent to do.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="num" connector-kind="socket" connector-type="number">
+					<DefaultArg genus-name="number" label="10"></DefaultArg>
+				</BlockConnector>
+				<BlockConnector label="do" connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-owned-by-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="vm-cmd-name" value="crt-breed-do"></LangSpecProperty>
+				<LangSpecProperty key="is-setup" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="inline-arg" value="1"></LangSpecProperty>
+				<LangSpecProperty key="include-breed" value="yes"></LangSpecProperty>
+				<LangSpecProperty key="include-breed-shape" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<BlockGenus name="collision" kind="command" initlabel="Collision" color="128 128 128" is-starter="yes" is-terminator="yes">
+			<description>
+				<text>Constantly checks for collisions between agents.  If a collision occurs, causes the collider to run the <arg n="1"/> code, and the collidee to run the <arg n="2"/> code.  Which agent is the collidee and which is the collider depends on the block.  For example, if a Turtle and Frog collide, the collision block with "Turtles" as the first port and "Frogs" as the second port will assume that the Turtle is the collider and the Frog is the collidee.</text>
+				<arg-description n="1" name="me">
+				This is the code that the collider runs.
+				</arg-description>
+				
+				<arg-description n="2" name="agents">
+					This is the code that the collidee runs.  The label of this port determines which breed will be assumed to be collidee.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-kind="socket" connector-type="cmd"></BlockConnector>
+				<BlockConnector connector-kind="socket" connector-type="cmd"></BlockConnector>
+			</BlockConnectors>
+			<LangSpecProperties>
+				<LangSpecProperty key="is-collision" value="yes"></LangSpecProperty>
+			</LangSpecProperties>
+		</BlockGenus>
+		
+		<!-- DYNAMIC BLOCKS -->
+		
+		<BlockGenus name="ashape" kind="data" initlabel="" color="0 0 139">
+			<BlockConnectors>
+				<BlockConnector connector-kind="plug" connector-type="string"></BlockConnector>
+			</BlockConnectors>
+			<Images>
+				<Image>
+					<FileLocation>/models/animals/turtle/default_icon.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+		
+	</BlockGenuses>
+	
+	<BlockFamilies>
+		<BlockFamily>
+			<FamilyMember>fd</FamilyMember>
+			<FamilyMember>bk</FamilyMember>
+		</BlockFamily>
+		<BlockFamily>
+			<FamilyMember>rt</FamilyMember>
+			<FamilyMember>lt</FamilyMember>
+		</BlockFamily> 
+		<BlockFamily>
+			<FamilyMember>keyboard-a</FamilyMember>
+			<FamilyMember>keyboard-b</FamilyMember>
+			<FamilyMember>keyboard-c</FamilyMember>
+			<FamilyMember>keyboard-d</FamilyMember>
+			<FamilyMember>keyboard-e</FamilyMember>
+			<FamilyMember>keyboard-f</FamilyMember>
+			<FamilyMember>keyboard-g</FamilyMember>
+			<FamilyMember>keyboard-h</FamilyMember>
+			<FamilyMember>keyboard-i</FamilyMember>
+			<FamilyMember>keyboard-j</FamilyMember>
+			<FamilyMember>keyboard-k</FamilyMember>
+			<FamilyMember>keyboard-l</FamilyMember>
+			<FamilyMember>keyboard-m</FamilyMember>
+			<FamilyMember>keyboard-n</FamilyMember>
+			<FamilyMember>keyboard-o</FamilyMember>
+			<FamilyMember>keyboard-p</FamilyMember>
+			<FamilyMember>keyboard-q</FamilyMember>
+			<FamilyMember>keyboard-r</FamilyMember>
+			<FamilyMember>keyboard-s</FamilyMember>
+			<FamilyMember>keyboard-t</FamilyMember>
+			<FamilyMember>keyboard-u</FamilyMember>
+			<FamilyMember>keyboard-v</FamilyMember>
+			<FamilyMember>keyboard-w</FamilyMember>
+			<FamilyMember>keyboard-x</FamilyMember>
+			<FamilyMember>keyboard-y</FamilyMember>
+			<FamilyMember>keyboard-z</FamilyMember>
+			<FamilyMember>keyboard-0</FamilyMember>
+			<FamilyMember>keyboard-1</FamilyMember>
+			<FamilyMember>keyboard-2</FamilyMember>
+			<FamilyMember>keyboard-3</FamilyMember>
+			<FamilyMember>keyboard-4</FamilyMember>
+			<FamilyMember>keyboard-5</FamilyMember>
+			<FamilyMember>keyboard-6</FamilyMember>
+			<FamilyMember>keyboard-7</FamilyMember>
+			<FamilyMember>keyboard-8</FamilyMember>
+			<FamilyMember>keyboard-9</FamilyMember>
+			<FamilyMember>keyboard-up</FamilyMember>
+			<FamilyMember>keyboard-down</FamilyMember>
+			<FamilyMember>keyboard-left</FamilyMember>
+			<FamilyMember>keyboard-right</FamilyMember>
+			<FamilyMember>keyboard-space</FamilyMember>
+		</BlockFamily> 
+	</BlockFamilies>
+
+	<BlockDrawerBars>	
+		<BlockDrawerBar location="southeast">
+			<BlockDrawer name="Runtime Blocks" type="factory" is-open="yes" button-color="139 0 0">
+				<BlockGenusMember>setup</BlockGenusMember>
+				<BlockGenusMember>forever</BlockGenusMember>
+				<BlockGenusMember>clear-all</BlockGenusMember>
+				<BlockGenusMember>clear-everyone</BlockGenusMember>
+				<BlockGenusMember>clear-patches</BlockGenusMember>
+			</BlockDrawer>
+			<BlockDrawer name="Movement" type="factory" button-color="255 0 0">
+				<BlockGenusMember>fd</BlockGenusMember>
+				<BlockGenusMember>bk</BlockGenusMember>
+				<Separator/>
+				<BlockGenusMember>lt</BlockGenusMember>
+				<BlockGenusMember>rt</BlockGenusMember>
+				<Separator/>
+				<BlockGenusMember>number</BlockGenusMember>
+				<Separator/>
+			</BlockDrawer>
+			<BlockDrawer name="Logic" type="factory" button-color="255 69 0">
+				<BlockGenusMember>true</BlockGenusMember>
+				<BlockGenusMember>false</BlockGenusMember>
+				<BlockGenusMember>if</BlockGenusMember>
+				<BlockGenusMember>ifelse</BlockGenusMember>
+				<NextLine/>
+				<BlockGenusMember>switch</BlockGenusMember>
+			</BlockDrawer>
+			<BlockDrawer name="Controls" type="factory" button-color="255 255 0">
+				<BlockGenusMember>keyboard-a</BlockGenusMember>
+				<BlockGenusMember>keyboard-0</BlockGenusMember>
+				<NextLine/>
+				<BlockGenusMember>keyboard-up</BlockGenusMember>
+				<BlockGenusMember>keyboard-space</BlockGenusMember>
+			</BlockDrawer>
+		</BlockDrawerBar>
+	</BlockDrawerBars>
+	
+	<Pages drawer-with-page="yes">
+		<Page page-name="Turtles" page-width="700" page-shape="animals/turtle-default"></Page>
+		<Page page-name="Setup" page-width="700"></Page>
+	</Pages>
+	
+</BlockLangDef>

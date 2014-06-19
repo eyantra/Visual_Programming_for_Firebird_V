@@ -1,0 +1,67 @@
+<project name="slcodeblocks" default="jar" basedir=".">
+  <description>build file for slcodeblocks</description>
+
+  <path id="classpath">
+    <fileset dir="." includes="*.java"/>
+    <fileset dir="../codeblocks/build" includes="codeblocks.jar"/>
+    <fileset dir="lib" includes="*.jar"/>
+  </path>
+
+  <target name="clean" description="Removes all generated files">
+    <delete dir="build/slcodeblocks"/>
+    <delete dir="build/importer"/>
+    <delete dir="build/breedcontroller"/>
+    <delete dir="build/runtimecontroller"/>
+    <delete file="slcodeblocks.jar"/>
+  </target>
+
+  <target name="prepare">
+    <mkdir dir="build/support/images"/>
+    <copy todir="build">
+      <fileset dir="../codeblocks" includes="codeblocks.jar"/>
+    </copy>
+    <delete>
+      <fileset dir="build/support" includes="lang_def* *.dtd"/>
+    </delete>
+    <copy todir="build/support">
+      <fileset dir="../codeblocks/support" includes="*.dtd"/>
+    </copy>
+    <copy todir="build/support">
+      <fileset dir="support"/>
+    </copy>
+  </target>
+
+  <target name="compile" depends="prepare" description="Compiles the Java source to the build directory">
+    <mkdir dir="build"/>
+    <javac classpathref="classpath"
+	   destdir="build"
+	   source="1.5"
+	   target="1.5"
+	   debug="true">
+      <src path="src/slcodeblocks"/>
+      <src path="src/importer"/>
+      <src path="src/breedcontroller"/>
+      <src path="src/runtimecontroller"/>
+    </javac>
+    <copy todir="build/slcodeblocks">
+      <fileset dir="src/slcodeblocks" includes="*.png"/>
+    </copy>
+  </target>
+
+  <target name="jar" depends="compile" description="Creates a jar for slcodeblocks">
+    <jar destfile="slcodeblocks.jar" basedir="build" manifest="Manifest.mf"/>
+    <copy todir="build" file="slcodeblocks.jar"/>
+  </target>
+
+  <target name="javadoc" description="Generates Javadoc API for slcodeblocks">
+    <javadoc destdir="doc/api"
+             classpathref="classpath"
+	     windowtitle="slcodeblocks"
+	     Private="no"
+	     source="1.5"
+	     sourcepath="src"
+	     packagenames="*">
+      <link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
+    </javadoc>
+  </target>
+</project>
